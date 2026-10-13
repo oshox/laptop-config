@@ -1,0 +1,14 @@
+
+configuration {
+  show-icons: true;
+}
+
+//@theme "/usr/share/rofi/themes/Monokai.rasi"
+
+//@theme "@HOME@/.config/rofi/themes/squared-everfrost.rasi"
+
+//@theme "@HOME@/.config/rofi/themes/rounded-gray-dark.rasi"
+
+//@theme "@HOME@/.config/rofi/themes/squared-everfrost.rasi"
+
+@theme "@HOME@/.config/rofi/themes/squared-nord.rasi"

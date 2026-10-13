@@ -1,0 +1,60 @@
+# Paths (relative to $HOME) captured into home/ by capture.sh.
+# Directories are copied recursively, filtered by exclude.txt.
+
+# --- shell / git ---
+.bashrc
+.bash_profile
+.profile
+.bash_logout
+.bashrc.d/
+.gitconfig
+.gtkrc-2.0
+.ruff.toml
+.config/git/
+
+# --- desktop look & layout ---
+.config/sway/
+.config/waybar/config.jsonc
+.config/waybar/style.css
+.config/waybar/power_menu.xml
+.config/rofi/
+.config/dunst/
+.config/swaylock/
+.config/alacritty/
+.config/ghostty/
+.config/gtk-3.0/
+.config/gtk-4.0/
+.config/lxqt/
+.config/dconf/
+.config/mimeapps.list
+.config/user-dirs.dirs
+.config/user-dirs.locale
+.config/background.jpg
+.config/lockscreen.jpg
+.config/lockscreen2.jpg
+.config/Thunar/
+.config/xfce4/
+.config/pavucontrol.ini
+.config/pipewire/
+.config/systemd/
+.config/containers/
+
+# --- app / tool configs ---
+.config/micro/bindings.json
+.config/micro/settings.json
+.config/micro/plug/
+.config/btop/
+.config/qalculate/
+.config/mpv/
+.config/xarchiver/
+.config/superfile/
+.config/k9s/
+.config/helm/repositories.yaml
+.config/deluge/core.conf
+.config/deluge/gtk3ui.conf
+
+# --- ~/.local ---
+.local/share/applications/app.liten.Gram.desktop
+.local/share/applications/userapp-micro-H652B3.desktop
+.local/share/bash-completion/
+.local/bin/transcode-av1.sh

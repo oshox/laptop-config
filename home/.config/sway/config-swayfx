@@ -1,0 +1,58 @@
+# Test config for swayfx — transiently installed to try out the "eye candy"
+# fork of sway (see https://github.com/WillPower3309/swayfx).
+#
+# Inherits the real config (keybindings, inputs, outputs, bar, etc.)
+# unchanged, then layers on effect defaults below. Nothing here touches a
+# keybinding.
+#
+# Launch with:  sway -c ~/.config/sway/config-swayfx
+# (from a spare TTY, so your normal sway session on another TTY is untouched)
+
+include ~/.config/sway/config
+
+### SwayFX effects — pleasing but subdued defaults
+#
+# Gaps instead of a solid border — a transparent-looking breathing space
+# between windows, the screen edge, and waybar. This also gives the
+# rounded corners below room to actually read as rounded, since windows
+# no longer touch each other or the screen edge.
+gaps inner 4
+gaps outer 2
+smart_gaps on
+
+# Rounded corners, a little softer than the "very rounded" look some
+# configs use, applied everywhere.
+corner_radius 6
+smart_corner_radius enable
+
+# Background blur behind transparent/floating surfaces. Kept light so it
+# reads as a subtle depth cue rather than a frosted-glass effect that
+# fights for attention.
+blur enable
+blur_passes 2
+blur_radius 3
+blur_noise 0.02
+blur_brightness 0.9
+blur_contrast 0.9
+blur_saturation 1.0
+# Let fullscreen/xray surfaces skip blur so video and games stay sharp.
+blur_xray disable
+
+# Soft drop shadows on windows, subtle and dark rather than a heavy
+# floating-card look.
+shadows enable
+shadow_blur_radius 20
+shadow_offset 0 2
+shadow_color #00000060
+shadow_inactive_color #00000030
+
+# Dim inactive windows just slightly so the focused window is obvious at
+# a glance, without the rest of the screen going noticeably dark.
+default_dim_inactive 0.15
+
+titlebar_separator disable
+
+# Smooth, quick transitions for window open/close/move — this build only
+# exposes a single global duration knob, no per-effect enable/curve
+# settings. Short enough to feel responsive, not sluggish.
+animation_duration_ms 150

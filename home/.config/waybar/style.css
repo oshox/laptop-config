@@ -1,0 +1,443 @@
+@define-color background #262626;
+@define-color foreground #DDDDDD;
+@define-color cursor #F2F2F2;
+@define-color selection-background #FFFFFF;
+
+/* Palette */
+@define-color color0 #333333;
+@define-color color1 #C4265E;
+@define-color color2 #86B42B;
+@define-color color3 #B3B42B;
+@define-color color4 #6A7EC8;
+@define-color color5 #8C6BC8;
+@define-color color6 #56ADBC;
+@define-color color7 #E3E3DD;
+@define-color color8 #666666;
+@define-color color9 #F92672;
+@define-color color10 #A6E22E;
+@define-color color11 #E2E22E;
+@define-color color12 #819AFF;
+@define-color color13 #AE81FF;
+@define-color color14 #66D9EF;
+@define-color color15 #F8F8F2;
+
+* {
+    font-family: "Inter";
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* The window is 36px wide but only the inner box is painted, leaving a
+ * transparent 2px strip on the right as the gap to the app windows. */
+window#waybar {
+    background-color: transparent;
+    color: @foreground;
+}
+
+window#waybar > box {
+    margin-right: 2px;
+    background-color: alpha(@background, 0.5);
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: @color0;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset -3px 0 transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset -3px 0 @foreground;
+}
+
+#workspaces button {
+    padding: 5px 0;
+    background-color: transparent;
+    color: @foreground;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+    background-color: @color8;
+    box-shadow: inset -3px 0 @foreground;
+}
+
+#workspaces button.urgent {
+    background-color: @color9;
+}
+
+#mode {
+    background-color: @color8;
+    box-shadow: inset -3px 0 @foreground;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#custom-power,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 10px 0;
+    color: @foreground;
+}
+
+#workspaces {
+    margin: 4px 0;
+}
+
+/* If workspaces is the topmost module, omit top margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-top: 0;
+}
+
+/* If workspaces is the bottommost module, omit bottom margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-bottom: 0;
+}
+
+#clock {
+    background-color: @color8;
+}
+
+#battery {
+    background-color: @color7;
+    color: @background;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @foreground;
+    background-color: @color2;
+}
+
+@keyframes blink {
+    to {
+        background-color: @color7;
+        color: @background;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: @color9;
+    color: @foreground;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon.performance {
+    background-color: @color9;
+    color: @foreground;
+}
+
+#power-profiles-daemon.balanced {
+    background-color: @color4;
+    color: @foreground;
+}
+
+#power-profiles-daemon.power-saver {
+    background-color: @color2;
+    color: @background;
+}
+
+label:focus {
+    background-color: @background;
+}
+
+/* Temperature shares the CPU's colors so the two read as one group. */
+#cpu,
+#temperature {
+    background-color: @color10;
+    color: @background;
+}
+
+#memory {
+    background-color: @color5;
+}
+
+#disk {
+    background-color: @color3;
+}
+
+#backlight {
+    background-color: @color6;
+}
+
+#network {
+    background-color: @color12;
+}
+
+#network.disconnected {
+    background-color: @color9;
+}
+
+#pulseaudio {
+    background-color: @color7;
+    color: @background;
+}
+
+#pulseaudio.muted {
+    background-color: @color0;
+}
+
+#wireplumber {
+    background-color: @color7;
+    color: @background;
+}
+
+#wireplumber.muted {
+    background-color: @color9;
+}
+
+#custom-media {
+    background-color: @color10;
+    color: @background;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: @color10;
+}
+
+#custom-media.custom-vlc {
+    background-color: @color3;
+}
+
+#custom-weather {
+    background-color: @color0;
+}
+
+#temperature.critical {
+    background-color: @color9;
+    color: @foreground;
+}
+
+#tray {
+    background-color: @color4;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @color9;
+}
+
+#idle_inhibitor {
+    background-color: @color0;
+}
+
+#idle_inhibitor.activated {
+    background-color: @color7;
+    color: @background;
+}
+
+#mpd {
+    background-color: @color10;
+    color: @background;
+}
+
+#mpd.disconnected {
+    background-color: @color9;
+}
+
+#mpd.stopped {
+    background-color: @color8;
+}
+
+#mpd.paused {
+    background-color: @color2;
+}
+
+#language {
+    background: @color6;
+    color: @background;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: @color10;
+    color: @background;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: @foreground;
+}
+
+#privacy-item.screenshare {
+    background-color: @color3;
+}
+
+#privacy-item.audio-in {
+    background-color: @color2;
+}
+
+#privacy-item.audio-out {
+    background-color: @color4;
+}
+
+/* Match SwayFX's window corner_radius (6px) on every module pill/icon,
+ * so waybar reads as part of the same rounded-corner theme. Overrides the
+ * `button { border-radius: 0 }` rule above via ID selector specificity. */
+#workspaces button,
+#mode,
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#custom-weather,
+#tray,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd,
+#language,
+#keyboard-state,
+#privacy-item,
+#custom-gmail {
+    border-radius: 4px;
+}
+
+/* --- waybar-gmail-checker: appended by install.sh on 2026-09-20T15:50:37-07:00 --- */
+/* Merge into ~/.config/waybar/style.css (install.sh does this
+ * automatically). Uses the same @define-color palette already defined at
+ * the top of that file. */
+
+#custom-gmail {
+    padding: 10px 0;
+    color: @foreground;
+    background-color: @color0; /* matches #custom-weather's neutral tone */
+}
+
+/* Unread mail: the one state that should actually catch your eye, so it
+ * gets the same alert color used for battery.critical / network.disconnected
+ * elsewhere in this file. */
+#custom-gmail.unread {
+    background-color: @color9;
+    color: @foreground;
+}
+
+/* Inbox zero: quietly neutral, nothing to draw attention to. */
+#custom-gmail.read {
+    background-color: @color0;
+    color: @foreground;
+}
+
+/* Something's wrong (network/API error, or never authenticated) -- a
+ * different tone from .unread so "you have mail" and "something's broken"
+ * are never visually confused with each other. */
+#custom-gmail.error,
+#custom-gmail.unauthenticated {
+    background-color: @color3;
+    color: @background;
+}
+
+#custom-power {
+    font-size: 18px;
+    font-weight: 900;
+    padding: 8px 0;
+    min-width: 0;
+    margin: 0 0 4px 0;
+    background-color: @color0;
+    color: @foreground;
+    border-radius: 4px;
+}
+
+/* Two-row widgets (75% icon over value, upright text): the module padding
+ * above was for one rotated line, so use a small vertical padding instead. */
+#cpu,
+#temperature,
+#memory,
+#battery,
+#pulseaudio,
+#clock,
+#custom-gmail,
+#custom-weather {
+    padding: 3px 0;
+}
+
+/* The clock's rows use compressed line heights (see config.jsonc), so give it
+ * a little more padding to match the other pills. */
+#clock {
+    padding: 6px 0;
+}

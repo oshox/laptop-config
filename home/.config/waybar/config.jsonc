@@ -1,0 +1,251 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top", // Above windows (waybar defaults to "bottom"): beneath them, SwayFX paints each window's 40px shadow over the bar, and the focused window's shadow is much darker than an unfocused one's
+  "position": "left", // Waybar position (top|bottom|left|right)
+  // "height": 30, // Waybar height (to be removed for auto height)
+  "width": 36, // 30 (widest text, "199°") + 4 breathing room + 2 gap strip, see style.css
+  "spacing": 4, // Gaps between modules (4px)
+  // Choose the order of the modules
+  "modules-left": ["custom/power", "sway/workspaces", "sway/mode", "sway/scratchpad"],
+  "modules-center": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "power-profiles-daemon",
+    "custom/gmail",
+    "custom/weather",
+    "temperature",
+    "cpu",
+    "memory",
+    "battery",
+    "clock",
+    "tray",
+  ],
+  "modules-right": [],
+  // Modules configuration
+  // "sway/workspaces": {
+  //     "disable-scroll": true,
+  //     "all-outputs": true,
+  //     "warp-on-scroll": false,
+  //     "format": "{name}: {icon}",
+  //     "format-icons": {
+  //         "1": "",
+  //         "2": "",
+  //         "3": "",
+  //         "4": "",
+  //         "5": "",
+  //         "urgent": "",
+  //         "focused": "",
+  //         "default": ""
+  //     }
+  // },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": "",
+    },
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+    "rotate": 90,
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", ""],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}",
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+    "unknown-tag": "N/A",
+    "interval": 5,
+    "consume-icons": {
+      "on": " ",
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": " ",
+    },
+    "repeat-icons": {
+      "on": " ",
+    },
+    "single-icons": {
+      "on": "1 ",
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": "",
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)",
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
+    },
+  },
+  "tray": {
+    "icon-size": 18, // waybar's default is 16; +10% is 17.6, so 18 (whole pixels only)
+    "spacing": 10,
+    // "icons": {
+    //   "blueman": "bluetooth",
+    //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+    // }
+  },
+  "clock": {
+    "format": "<span line_height=\"0.7\">{:%H%n<span line_height=\"0.3\">··</span>%n%M}</span>",
+    "justify": "center",
+    // "timezone": "America/New_York",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "<span line_height=\"0.7\">{:%m%n<span line_height=\"0.3\">—</span>%n%d}</span>",
+  },
+  "cpu": {
+    "justify": "center",
+    "states": { "max": 100 },
+    "format-max": "<span size=\"90%\"></span>\n1.0",
+    "format": "<span size=\"90%\"></span>\n{usage}%",
+    "tooltip": false,
+  },
+  "memory": {
+    "justify": "center",
+    "states": { "max": 100 },
+    "format-max": "<span size=\"90%\"></span>\n1.0",
+    "format": "<span size=\"90%\"></span>\n{percentage}%",
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "justify": "center",
+    // Package temperature of the CPU. hwmon numbers shuffle between boots, so point at the
+    // coretemp device's hwmon directory and let waybar find the hwmon* inside it.
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
+    // Celsius (unlike the weather widget, which is Fahrenheit); critical-threshold is Celsius too.
+    "format": "<span size=\"90%\">{icon}</span>\n{temperatureC}°",
+    "format-icons": ["", "", ""],
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"],
+  },
+  "battery": {
+    "justify": "center",
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    // Time remaining (time to full while charging) is the default view; clicking toggles to
+    // the capacity view (format-alt). Plugged and full have no estimate, so they show the
+    // capacity instead. For a few minutes after plugging in the battery can report no charge
+    // rate (power_now fails with ENODEV), and {time} stays blank until it does.
+    "format": "<span size=\"90%\">{icon}</span>\n<span size=\"85%\">{time}</span>",
+    "format-full": "<span size=\"90%\">{icon}</span>\n1.0",
+    "format-charging": "<span size=\"90%\"></span>\n<span size=\"85%\">{time}</span>",
+    "format-plugged": "<span size=\"90%\"></span>\n{capacity}",
+    "format-alt": "<span size=\"90%\">{icon}</span>\n{capacity}",
+    // {H}/{M} only exist inside format-time ({time} is built from it); also used by the tooltip.
+    "format-time": "{H}:{M:02}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""],
+  },
+  "battery#bat2": {
+    "bat": "BAT2",
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+  },
+  "pulseaudio": {
+    "justify": "center",
+    // pulseaudio applies states as "volume <= value" (unlike cpu/memory), so the
+    // normal NN% format is the lt100 state and the base format covers exactly 100.
+    "states": { "lt100": 99 },
+    // "scroll-step": 1, // %, can be a float
+    "format": "<span size=\"90%\">{icon}</span>\n1.0\n{format_source}",
+    "format-lt100": "<span size=\"90%\">{icon}</span>\n{volume}%\n{format_source}",
+    "format-bluetooth": "<span size=\"90%\">{icon}</span>\n{volume}\n{format_source}",
+    "format-bluetooth-muted": "<span size=\"90%\"></span>\n{format_source}",
+    "format-muted": "<span size=\"90%\"></span>\n{format_source}",
+    "format-source": "<span size=\"90%\"></span>",
+    "format-source-muted": "<span size=\"90%\"></span>",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+  },
+  "custom/media": {
+    "format": "{icon} {text}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+      "spotify": "",
+      "default": "🎜",
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
+    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+    "menu-actions": {
+      "shutdown": "systemctl poweroff",
+      "reboot": "systemctl reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate",
+    },
+  },
+  "custom/weather": {
+    "format": "{}",
+    "justify": "center",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar --fahrenheit --mph --location '@WTTR_LOCATION@' --custom-indicator '<span size=\"90%\">{ICON}</span>\n{temp_F}°'",
+    "return-type": "json",
+  },
+  // waybar-gmail-checker: https://github.com (see @HOME@/waybar-gmail-checker)
+  "custom/gmail": {
+    "justify": "center",
+    "format": "<span size=\"90%\"></span>\n{}",
+    "return-type": "json",
+    "interval": 60,
+    "signal": 9,
+    "exec": "$HOME/.local/bin/waybar-gmail status",
+    "on-click": "$HOME/.local/bin/waybar-gmail click",
+    "on-click-right": "$HOME/.local/bin/waybar-gmail open",
+    "tooltip": true,
+  },
+}

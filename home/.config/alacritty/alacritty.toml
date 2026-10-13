@@ -1,0 +1,40 @@
+[selection]
+# Copy selected text to clipboard (copy-on-select like ghostty/MS Terminal)
+save_to_clipboard = true
+
+[[mouse.bindings]]
+mouse = "Right"
+action = "Paste"
+
+# Monokai color scheme (ported from ghostty config)
+[colors.primary]
+background = "#262626"
+foreground = "#DDDDDD"
+
+[colors.cursor]
+cursor = "#F2F2F2"
+text = "#262626"
+
+[colors.selection]
+background = "#FFFFFF"
+text = "CellForeground"
+
+[colors.normal]
+black   = "#333333"
+red     = "#C4265E"
+green   = "#86B42B"
+yellow  = "#B3B42B"
+blue    = "#6A7EC8"
+magenta = "#8C6BC8"
+cyan    = "#56ADBC"
+white   = "#E3E3DD"
+
+[colors.bright]
+black   = "#666666"
+red     = "#F92672"
+green   = "#A6E22E"
+yellow  = "#E2E22E"
+blue    = "#819AFF"
+magenta = "#AE81FF"
+cyan    = "#66D9EF"
+white   = "#F8F8F2"

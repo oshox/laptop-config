@@ -1,0 +1,25 @@
+[Default Applications]
+text/plain=gcr-viewer.desktop
+text/html=vivaldi-stable.desktop
+x-scheme-handler/http=vivaldi-stable.desktop
+x-scheme-handler/https=vivaldi-stable.desktop
+x-scheme-handler/about=vivaldi-stable.desktop
+x-scheme-handler/unknown=vivaldi-stable.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+video/mp4=mpv.desktop
+
+[Added Associations]
+text/plain=dev.flint.Flint.desktop;userapp-micro-H652B3.desktop;md.obsidian.Obsidian.desktop;gcr-viewer.desktop;
+image/jpeg=imv.desktop;imv-dir.desktop;
+inode/directory=imv-dir.desktop;
+application/octet-stream=gcr-viewer.desktop;
+audio/flac=mpv.desktop;
+audio/mpeg=mpv.desktop;
+image/svg+xml=vivaldi-stable.desktop;
+image/png=vivaldi-stable.desktop;
+audio/x-vorbis+ogg=mpv.desktop;
+video/mp4=mpv.desktop;
+image/tiff=gimp.desktop;imv.desktop;userapp-display -resize 1920x1080\\> -5VXPV3.desktop;userapp-display-F57EV3.desktop;
+application/json=userapp-micro-H652B3.desktop;
+video/x-ms-wmv=mpv.desktop;
+image/jp2=imv.desktop;

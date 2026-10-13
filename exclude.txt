@@ -1,0 +1,13 @@
+# rsync exclude patterns applied by capture.sh
+*.orig
+*.pre-migrate
+*.bak
+*~
+*.log
+*.db
+*.sqlite*
+*cache*
+*history*
+*state*
+mimeinfo.cache
+.config/dconf/user

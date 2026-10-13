@@ -1,0 +1,70 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   @HOME@/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+
+confirm-close-surface = false
+right-click-action = paste
+copy-on-select = true
+
+# Color scheme: Monokai
+background = "#262626"
+foreground = "#DDDDDD"
+cursor-color = "#F2F2F2"
+selection-background = "#FFFFFF"
+
+palette = 0=#333333
+palette = 1=#C4265E
+palette = 2=#86B42B
+palette = 3=#B3B42B
+palette = 4=#6A7EC8
+palette = 5=#8C6BC8
+palette = 6=#56ADBC
+palette = 7=#E3E3DD
+palette = 8=#666666
+palette = 9=#F92672
+palette = 10=#A6E22E
+palette = 11=#E2E22E
+palette = 12=#819AFF
+palette = 13=#AE81FF
+palette = 14=#66D9EF
+palette = 15=#F8F8F2
